@@ -1,0 +1,10 @@
+<section>
+  <article *ngFor="let article of articles">
+    <h2>{{ article.title  | more:3 }}</h2>
+    <figure>
+      <img src="https://via.placeholder.com/500x200" alt="">
+    </figure>
+    <p>{{ article.body | more:10 }}</p>
+    <p><a [routerLink]="['/article', article.title, article.id]">Lire la suite</a></p>
+  </article>
+</section>

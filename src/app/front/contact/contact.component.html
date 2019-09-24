@@ -1,0 +1,39 @@
+<form #f="ngForm" (submit)="onFrmSumbmit(f)">
+  <div class="form-group">
+    <label for="email">Email :</label>
+    <input type="email" 
+      class="form-control" 
+      id="email" 
+      name="email" 
+      ngModel 
+      #email="ngModel" 
+      required 
+      minlength="10" 
+      maxlength="50" 
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+      <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+        <div *ngIf="email.errors.required">Email requis</div>
+        <div *ngIf="email.errors.pattern">Doit être de la forme nom@domaine.fr</div>
+        <div *ngIf="email.errors.minlength">10 caractères minimum</div>
+        <div *ngIf="email.errors.maxlength">250 caractères maximum</div>
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="commentaire">Commentaire :</label>
+    <textarea 
+      class="form-control"
+      id="commentaire"
+      name="commentaire" 
+      #commentaire="ngModel"
+      ngModel
+      required 
+      minlength="10" 
+      maxlength="50"
+      ></textarea>
+    <div class="alert alert-danger" *ngIf="commentaire.touched && !commentaire.valid">
+      <div *ngIf="commentaire.errors.required">Commentaire requis</div>
+      <div *ngIf="commentaire.errors.minlength">10 caractères minimum</div>
+      <div *ngIf="commentaire.errors.maxlength">50 caractères maximum</div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-default" [disabled]="!f.valid">Submit</button>
